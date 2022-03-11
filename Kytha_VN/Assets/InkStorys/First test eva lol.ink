@@ -1,9 +1,4 @@
-EXTERNAL Name(charName)
-EXTERNAL Scene(sceneN)
-EXTERNAL Position(x,y)
-EXTERNAL Enter(pjName)
-EXTERNAL Exit(pjName)
-EXTERNAL SetPosition(dataPos,x,y)
+
 
 {Name("Player")}
 Salí del cuartel y caminé hasta la plaza de la ciudad. Estaba bastante transitada, muchas personas iban y venían. 
@@ -32,3 +27,23 @@ Po me voy
 {Exit("Whitehairboy")}{Name("Player")}
 
 Buena prueba lol
+
+
+EXTERNAL Name(charName)
+EXTERNAL Scene(sceneN)
+EXTERNAL Enter(pjName)
+EXTERNAL Exit(pjName)
+
+=== function Name(charname) ===
+// Usually external functions can only return placeholder
+// results, otherwise they'd be defined in ink!
+~ return charname
+
+=== function Scene(SceneN) ===
+~ return SceneN
+
+=== function Enter(pjName) ===
+~ return pjName
+
+=== function Exit(pjName) ===
+~ return pjName

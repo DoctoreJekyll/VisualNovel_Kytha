@@ -16,7 +16,11 @@ public class DialogueController : MonoBehaviour
     public TMP_Text nameTag;
 
     [Header("Dialogue Charact")]
-    [Range(0.01f,0.05f)]public float speedText;
+    [Range(0.01f, 0.05f)] public float speedText;
+
+    [Header("Choices Stuffs")]
+    [SerializeField] private VerticalLayoutGroup verticalLayoutGroup;
+    [SerializeField] private Button buttonPrefab;
 
     private void Start()
     {
@@ -29,7 +33,14 @@ public class DialogueController : MonoBehaviour
         {
             StopAllCoroutines();
             StartCoroutine(ShowChar());
+            //DisplayNextLine();
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            DisplayChoices();
+        }
+
     }
 
 
@@ -42,6 +53,7 @@ public class DialogueController : MonoBehaviour
         story.BindExternalFunction("Enter", (string pjName) => Enter(pjName));
         story.BindExternalFunction("Exit", (string pjName) => Exit(pjName));
         story.BindExternalFunction("SetPosition", (string dataPos, float x, float y) => SetPosition(dataPos, x, y));
+        story.BindExternalFunction("Chapter", (string chapter) => LoadOtherInk(chapter));
 
     }
 
@@ -54,11 +66,68 @@ public class DialogueController : MonoBehaviour
             text = text?.Trim();
             dialogueBox.text = text;
         }
+        else if (story.currentChoices.Count > 0)
+        {
+            DisplayChoices();
+        }
         else
         {
             dialogueBox.text = "END";//Temporal
         }
     }
+
+    private void DisplayChoices()
+    {
+
+        Debug.Log("test");
+
+        if (verticalLayoutGroup.GetComponentsInChildren<Button>().Length > 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < story.currentChoices.Count; i++)
+        {
+            Choice choice = story.currentChoices[i];
+            Button button = CreateChoiceButton(choice.text);
+
+            button.onClick.AddListener(() => OnClickChoiceButton(choice));
+        }
+
+    }
+
+    private Button CreateChoiceButton(string text)
+    {
+        Button choiceButton = Instantiate(buttonPrefab);
+        choiceButton.transform.SetParent(verticalLayoutGroup.transform, false);
+
+        TMP_Text buttonTxt = choiceButton.GetComponentInChildren<TMP_Text>();
+        buttonTxt.text = text;
+
+        return choiceButton;
+
+    }
+
+    private void OnClickChoiceButton(Choice choice)
+    {
+        story.ChooseChoiceIndex(choice.index);
+        RefreshChoiceView();
+        ShowChar();
+
+    }
+
+    private void RefreshChoiceView()
+    {
+        if (verticalLayoutGroup != null)
+        {
+            foreach (var button in verticalLayoutGroup.GetComponentsInChildren<Button>())
+            {
+                Destroy(button.gameObject);
+            }
+        }
+    }
+
+
 
     public IEnumerator ShowChar()
     {
@@ -73,8 +142,10 @@ public class DialogueController : MonoBehaviour
                 dialogueBox.text += c;
                 yield return new WaitForSeconds(speedText);
             }
-
-
+        }
+        else if (story.currentChoices.Count > 0)
+        {
+            DisplayChoices();
         }
         else
         {
@@ -164,5 +235,24 @@ public class DialogueController : MonoBehaviour
         Vector2 newPosition = new Vector2(x, y);
         Debug.Log(newPosition);
     }
+
+    public void LoadOtherInk(string name)
+    {
+        TextAsset temp;
+        Story tempStory;
+
+        temp = (TextAsset)Resources.Load("InkArchive/Ink[" + name + "]");
+
+        tempStory = new Story(temp.text);
+        story = tempStory;
+
+        //story = new Story(inkJsonFile.text);
+
+    }
+    //(Resources.Load("Characters/Character[" + characterName + "]") != null)
+    //    [Header("Dialogue Stuffs")]
+    //public TextAsset inkJsonFile;
+    //public Story story;
+
 
 }
