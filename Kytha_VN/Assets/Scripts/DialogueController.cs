@@ -54,6 +54,7 @@ public class DialogueController : MonoBehaviour
         story.BindExternalFunction("Exit", (string pjName) => Exit(pjName));
         story.BindExternalFunction("SetPosition", (string dataPos, float x, float y) => SetPosition(dataPos, x, y));
         story.BindExternalFunction("Chapter", (string chapter) => LoadOtherInk(chapter));
+        story.BindExternalFunction("SetLayer", (string layer) => SetLayerImage(layer, BCFC.instance.foreground));
 
     }
 
@@ -248,6 +249,34 @@ public class DialogueController : MonoBehaviour
 
         //story = new Story(inkJsonFile.text);
 
+    }
+
+    void SetLayerImage(string data, BCFC.LAYER layer)
+    {
+        string texName = data.Contains(",") ? data.Split(',')[0] : data;
+        Texture2D tex = texName == "null" ? null : Resources.Load("Art/Images/UI/Backdrops/" + texName) as Texture2D;
+        float spd = 2f;
+        bool smooth = false;
+
+        if (data.Contains(","))
+        {
+            string[] parameters = data.Split(',');
+            foreach (string p in parameters)
+            {
+                float fVal = 0;
+                bool bVal = false;
+                if (float.TryParse(p, out fVal))
+                {
+                    spd = fVal; continue;
+                }
+                if (bool.TryParse(p, out bVal))
+                {
+                    smooth = bVal; continue;
+                }
+            }
+        }
+
+        layer.TransitionToTexture(tex, spd, smooth);
     }
     //(Resources.Load("Characters/Character[" + characterName + "]") != null)
     //    [Header("Dialogue Stuffs")]

@@ -2,10 +2,15 @@
 Esto es una prueba de escritura en ink.
 Mas y mas
 y Mas pruebas
-{Chapter("Chapter0")}
-jaja
 
+Vamos a probar los fondos a ver si cuela
+{SetLayer("Test")}
+Igual con suerte sale a la primera
+o no
+{SetLayer("Hojas")}
+Pero vamos a confiar que tampoco pasa na
 
+a
 
 * This is a choice that can only be chosen once
 testing
@@ -24,6 +29,8 @@ Me quiero morir
 {Enter("Mage")}{Name("Mage")}
 Lo ocurrido aquí es clasificado y no podrá ser expuesto a ningún organismo ni ser vivo fuera de éste establecimiento aquí y ahora.
 aeaeaeaeaeae
+{Chapter("Chapter0")}
+jaja
 aaaaaaaeeeeeaeaeeeee
 Si 
 
@@ -62,6 +69,8 @@ EXTERNAL Chapter(chapter)
 === function Chapter(chapter) ===
 ~ return chapter
 
-
+EXTERNAL SetLayer(layer)
+=== function SetLayer(layer) ===
+~ return layer
 
 
