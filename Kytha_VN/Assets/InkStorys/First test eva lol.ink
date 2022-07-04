@@ -17,16 +17,28 @@ lalallala
 sxwdgejknvcf
 Entonces vi un chaval con chaqueta acercarse.
 
-{Enter("Whitehairboy")}{Name("Chiquillo anime")}
+{Enter("Vaenus")}{Name("Vaenus")}
 
-Soy una especie de copia mala de Vaenus
-Jeje 
+Soy una especie de vampiro albino to guay
+Lol
 
 Po me voy
 
-{Exit("Whitehairboy")}{Name("Player")}
+{Exit("Vaenus")}{Name("Player")}
 
 Buena prueba lol
+
+{Enter("Valena")}{Name("Valena")}
+
+Esto es otra señora vampira o yokse
+Yasss
+
+{Exit("Valena")}{Name("Player")}
+
+Hay que mirar cómo ponerlos más grandecitos
+
+¿Podremos tener diferentes expresiones para cada uno? 
+Chan chan que misterio
 
 
 EXTERNAL Name(charName)
