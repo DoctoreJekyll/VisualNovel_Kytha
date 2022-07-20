@@ -10,22 +10,34 @@ o no
 {SetLayer("Hojas")}
 Pero vamos a confiar que tampoco pasa na
 
-a
+Pruebita-chan de opciones
+->My_Choices
+== My_Choices ==
+* [Good] -> Good
+* [Bad] -> Bad
+* [What] -> Repeat
 
-* This is a choice that can only be chosen once
-testing
-* [A choice where the content isn't printed after choosing]
-jajan`t
-+ This is a sticky choice - the player can choose it more than once
-no entiendo la vida
-* Try [it] this example!
-what
+== Good ==
+Estoy establecimiento
+{Scene("eva tests je")}
+-> END
+
+== Bad ==
+No estoy establecimiento
+-> Cointinue00
+
+== Repeat ==
+Repite establecimiento
+-> My_Choices
 
 
 jaja
 testing positions o no 
 Me quiero morir
 
+
+
+== Cointinue00 ==
 {Enter("Mage")}{Name("Mage")}
 Lo ocurrido aquí es clasificado y no podrá ser expuesto a ningún organismo ni ser vivo fuera de éste establecimiento aquí y ahora.
 aeaeaeaeaeae

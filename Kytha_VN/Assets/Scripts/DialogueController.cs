@@ -47,14 +47,14 @@ public class DialogueController : MonoBehaviour
     void LoadStory()
     {
         story = new Story(inkJsonFile.text);
-        story.BindExternalFunction("Name", (string charName) => ChangeName(charName));
-        story.BindExternalFunction("Scene", (string sceneN) => LoadScene(sceneN));
-        story.BindExternalFunction("Position", (float x, float y) => ChangePosition(x, y));
-        story.BindExternalFunction("Enter", (string pjName) => Enter(pjName));
-        story.BindExternalFunction("Exit", (string pjName) => Exit(pjName));
-        story.BindExternalFunction("SetPosition", (string dataPos, float x, float y) => SetPosition(dataPos, x, y));
-        story.BindExternalFunction("Chapter", (string chapter) => LoadOtherInk(chapter));
-        story.BindExternalFunction("SetLayer", (string layer) => SetLayerImage(layer, BCFC.instance.foreground));
+        story.BindExternalFunction("Name", (string charName) => ChangeName(charName));//Muestra nombre en la caja de nombre
+        story.BindExternalFunction("Scene", (string sceneN) => LoadScene(sceneN));//Carga otra escena
+        story.BindExternalFunction("Position", (float x, float y) => ChangePosition(x, y));//NO FUNCIONA PÈRO debería cambiar la posicion de los personajes
+        story.BindExternalFunction("Enter", (string pjName) => Enter(pjName));//Introduce un personaje en pantalla, por ahora en el centro de la misma
+        story.BindExternalFunction("Exit", (string pjName) => Exit(pjName));//Saca un personaje de pantalla
+        story.BindExternalFunction("SetPosition", (string dataPos, float x, float y) => SetPosition(dataPos, x, y));//NO FUNCIONA PERO debería marcar una posicion inicial de los pj
+        story.BindExternalFunction("Chapter", (string chapter) => LoadOtherInk(chapter));//Esto es para cambiar entre ink archivos
+        story.BindExternalFunction("SetLayer", (string layer) => SetLayerImage(layer, BCFC.instance.foreground));//NO FUNCIONA PERO debería de cambiar los fondos
 
     }
 
