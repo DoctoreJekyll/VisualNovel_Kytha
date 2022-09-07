@@ -177,6 +177,8 @@ public class Character
 
     public void SetPosition(Vector2 target)
     {
+        Debug.Log("LLAMANDO A LA POSICION");
+
         targetPosition = target;
 
         Vector2 padding = anchorPadding;

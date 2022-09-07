@@ -10,6 +10,15 @@ o no
 {SetLayer("Hojas")}
 Pero vamos a confiar que tampoco pasa na
 
+{Enter("Mage")}{Name("Mage")}
+Lo ocurrido aquí es clasificado y no podrá ser expuesto a ningún organismo ni ser vivo fuera de éste establecimiento aquí y ahora.
+aeaeaeaeaeae
+{SetPosition("Mage", 1, 1)}
+Cambiando pos del mago
+talta
+taltapos
+pos
+
 Pruebita-chan de opciones
 ->My_Choices
 == My_Choices ==
@@ -54,7 +63,7 @@ La maga se acaba de ir, una lástima, pero si se va es bueno, que se vaya sigini
 Todo esto está funcionando, y eso siempre es bueno, creo.
 {Scene("test")}
 
-
+-> END
 
 
 
@@ -85,4 +94,7 @@ EXTERNAL SetLayer(layer)
 === function SetLayer(layer) ===
 ~ return layer
 
+EXTERNAL SetPosition(data, x ,y)
+=== function SetPosition(data, x , y) ===
+~ return data + x + y
 

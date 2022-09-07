@@ -36,11 +36,6 @@ public class DialogueController : MonoBehaviour
             //DisplayNextLine();
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            DisplayChoices();
-        }
-
     }
 
 
@@ -210,17 +205,18 @@ public class DialogueController : MonoBehaviour
     }
 
 
-    void SetPosition(string name, float x, float y)
+    void SetPosition(string data, float locationX, float locationY)
     {
 
-        string character = name;
-        float locationX = x;
-        float locationY = y;
+        string[] parameters = data.Split(',');
+        string character = parameters[0];
+        locationX = float.Parse(parameters[1], System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("en-US"));
+        locationY = parameters.Length == 3 ? float.Parse(parameters[2], System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("en-US")) : 0;
 
         Character c = CharacterManager.instance.GetCharacters(character);
         c.SetPosition(new Vector2(locationX, locationY));
 
-        Debug.Log("set " + c.characterName + " position to " + locationX + "," + locationY);
+        print("set " + c.characterName + " position to " + locationX + "," + locationY);
     }
 
 
