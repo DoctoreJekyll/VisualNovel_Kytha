@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766b07c73b66c6e4dbdcaae8cc3a4437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJsonFile: {fileID: 4900000, guid: fa8924a8407e87f4ca97136d81f0bbba, type: 3}
+  inkJsonFile: {fileID: 4900000, guid: 7b788eacf04c4fa42a9aa5c7c2ee36ae, type: 3}
   dialogueBox: {fileID: 1234976543}
   nameTag: {fileID: 654356594}
   speedText: 0.0131

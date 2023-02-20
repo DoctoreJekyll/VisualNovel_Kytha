@@ -1,3 +1,4 @@
+{Name("¿?")}
 Los hechos seguían siendo los mismos. Iba a empezar una nueva vida, con una misión inusual. Dejándome llevar por las múltiples opciones que me esperaban, el sueño volvió a apoderarse de mí. 
 
 Así que esto es Kytha.
@@ -159,6 +160,17 @@ EXTERNAL Chapter(chapter)
 === function Chapter(chapter) ===
 ~ return chapter
 
-EXTERNAL SetLayer(layer)
-=== function SetLayer(layer) ===
+EXTERNAL CallSetBg(layer)
+=== function CallSetBg(layer) ===
 ~ return layer
+
+EXTERNAL SetPositionTest(pjName, amount)
+=== function SetPositionTest(pjName, amount) ===
+~ return pjName
+~ return amount
+
+EXTERNAL MoveCharacter(namePj, locationX, speed)
+=== function MoveCharacter(namePj, locationX, speed) ===
+~ return namePj
+~ return locationX
+~ return speed

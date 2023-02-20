@@ -1,4 +1,4 @@
-{Enter("Ethan")}{Name("Ethan")}
+{Enter("Mage")}{Name("Mage")}
 Ethan: Las calles a veces pueden parecer un poco liosas. Pero los olores son bastante característicos, así que siempre puedes seguirlos. 
 {Name("Player")}
 Player: Pero… los olores están todos mezclados. 

@@ -72,7 +72,7 @@ public class DialogueController : MonoBehaviour
         story.BindExternalFunction("Enter", (string pjName) => Enter(pjName));//Introduce un personaje en pantalla, por ahora en el centro de la misma
         story.BindExternalFunction("Exit", (string pjName) => Exit(pjName));//Saca un personaje de pantalla
         story.BindExternalFunction("Chapter", (string chapter) => LoadOtherInk(chapter));//Esto es para cambiar entre ink archivos
-        story.BindExternalFunction("CallSetBg", (string layer) => CallSetBg(layer));//NO FUNCIONA PERO debería de cambiar los fondos
+        story.BindExternalFunction("CallSetBg", (string name) => CallSetBg(name));//NO FUNCIONA PERO debería de cambiar los fondos
         story.BindExternalFunction("SetPositionTest", (string pjName, float amount) => SetPositionTest(pjName, amount));//Mueve un personaje a partir de su nombre y un valor que será la posicion en X
         story.BindExternalFunction("MoveCharacter", (string namePj, float locationX, float speed) => MoveCharacter(namePj, locationX, speed));
 
@@ -272,18 +272,20 @@ public class DialogueController : MonoBehaviour
 
     private void LoadOtherInk(string nameString)
     {
-        TextAsset temp = (TextAsset)Resources.Load("InkArchive/Ink[" + nameString + "]");
+        inkJsonFile = (TextAsset)Resources.Load("InkArchive/Ink[" + nameString + "]");
 
-        Story tempStory = new Story(temp.text);
+        Story tempStory = new Story(inkJsonFile.text);
         story = tempStory;
-
+        
+        LoadStory();
         //story = new Story(inkJsonFile.text);
 
     }
 
-    void CallSetBg(string layer)
+    void CallSetBg(string name)
     {
-        SetLayerImage(layer, BCFC.instance.background);
+        layer.TransitionToTexture(_texture, 1f, false);
+        Debug.Log(name);
     }
     
     void SetLayerImage(string data, BCFC.LAYER layer)
