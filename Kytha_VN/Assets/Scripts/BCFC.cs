@@ -143,7 +143,7 @@ public class BCFC : MonoBehaviour
 
         public void CreateNewActiveImage()
         {
-            Debug.Log("Test");
+            Debug.Log("Test image create stuffs");
             GameObject go = Instantiate(newImageObjectReference, root.transform) as GameObject;
             go.SetActive(true);
             RawImage raw = go.GetComponent<RawImage>();

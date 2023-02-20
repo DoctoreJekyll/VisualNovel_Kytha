@@ -1,19 +1,18 @@
 {Name("Name00")}
-Esto es una prueba de escritura en ink.
+Failed.
 Mas y mas
 y Mas pruebas
 
 Vamos a probar los fondos a ver si cuela
-{SetLayer("Test")}
+{CallSetBg("Test")}
 Igual con suerte sale a la primera
 o no
-{SetLayer("Hojas")}
+{CallSetBg("Hojas")}
 Pero vamos a confiar que tampoco pasa na
 
-{Enter("Mage")}{Name("Mage")}
+{Enter("Mage")}{Name("Mage")}{SetPositionTest("Mage", -500)}
 Lo ocurrido aquí es clasificado y no podrá ser expuesto a ningún organismo ni ser vivo fuera de éste establecimiento aquí y ahora.
-aeaeaeaeaeae
-{SetPosition("Mage", 1, 1)}
+aeaeaeaeaeae {MoveCharacter("Mage", 1, 500)}
 Cambiando pos del mago
 talta
 taltapos
@@ -90,11 +89,19 @@ EXTERNAL Chapter(chapter)
 === function Chapter(chapter) ===
 ~ return chapter
 
-EXTERNAL SetLayer(layer)
-=== function SetLayer(layer) ===
+EXTERNAL CallSetBg(layer)
+=== function CallSetBg(layer) ===
 ~ return layer
 
-EXTERNAL SetPosition(data, x ,y)
-=== function SetPosition(data, x , y) ===
-~ return data + x + y
+EXTERNAL SetPositionTest(pjName, amount)
+=== function SetPositionTest(pjName, amount) ===
+~ return pjName
+~ return amount
+
+EXTERNAL MoveCharacter(namePj, locationX, speed)
+=== function MoveCharacter(namePj, locationX, speed) ===
+~ return namePj
+~ return locationX
+~ return speed
+
 

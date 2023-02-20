@@ -1169,6 +1169,8 @@ MonoBehaviour:
   speedText: 0.0131
   verticalLayoutGroup: {fileID: 291012259}
   buttonPrefab: {fileID: 1192901049084518799, guid: e21bdf60979c89244bcb467a2395ce0a, type: 3}
+  _texture: {fileID: 2800000, guid: 7c870dec15afaa04a8b67bb5321bd298, type: 3}
+  _texture2: {fileID: 2800000, guid: 38f129caccae0c44cbf8800205e446db, type: 3}
 --- !u!4 &1433199177
 Transform:
   m_ObjectHideFlags: 0

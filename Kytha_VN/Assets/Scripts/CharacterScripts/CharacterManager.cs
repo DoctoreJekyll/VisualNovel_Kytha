@@ -8,18 +8,14 @@ public class CharacterManager : MonoBehaviour
     public static CharacterManager instance;
 
     public RectTransform characterPanel;//Todos los personajes tienen que estar enlazados al panel de personaje
-    public List<Character> characters = new List<Character>();//Lista de personajes que habrá en escena
+    public List<Character> characters = new List<Character>();//Lista de personajes que habrï¿½ en escena
     public Dictionary<string, int> charactersDictionary = new Dictionary<string, int>();//Forma para buscar nuestros personajes
 
     private void Awake()
     {
         instance = this;
     }
-
-    private void Update()
-    {
-        Debug.Log("Los personajes son" + characters.Count);
-    }
+    
 
     public Character GetCharacters(string characterName, bool createCharacterIfDoesNotExist = true, bool enableCreatedCharacterOnStart = true)//Intenta pillar un personaje por el nombre dado desde la lista de personajes
     {

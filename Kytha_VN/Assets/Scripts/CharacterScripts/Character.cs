@@ -105,7 +105,6 @@ public class Character
     {
         CharacterManager characterManager = CharacterManager.instance;
         GameObject prefab = Resources.Load("Characters/Character[" + _name + "]") as GameObject;//Importante, por el momento, el nombre entre corchetes del prefab debe coincidir con el que llamemos cuando creamos un nuevo personaje
-        Debug.Log(prefab.name);
         GameObject go = GameObject.Instantiate(prefab, characterManager.characterPanel);
 
         root = go.GetComponent<RectTransform>();

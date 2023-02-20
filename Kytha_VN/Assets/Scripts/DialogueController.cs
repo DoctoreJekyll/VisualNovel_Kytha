@@ -1,39 +1,63 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine.SceneManagement;
 
 public class DialogueController : MonoBehaviour
 {
     [Header("Dialogue Stuffs")]
     public TextAsset inkJsonFile;
-    public Story story;
+    [SerializeField] private Story story;
 
     public TMP_Text dialogueBox;
     public TMP_Text nameTag;
 
-    [Header("Dialogue Charact")]
+    [Header("Dialogue Character")]
     [Range(0.01f, 0.05f)] public float speedText;
 
     [Header("Choices Stuffs")]
     [SerializeField] private VerticalLayoutGroup verticalLayoutGroup;
     [SerializeField] private Button buttonPrefab;
 
+    [Header(("Others"))] 
+    private BCFC.LAYER layer;
+    private BCFC bgController;
+    [SerializeField] private Texture _texture;
+    [SerializeField] private Texture _texture2;
+    
+    private IEnumerator _enumerator;
+
     private void Start()
     {
+        _enumerator = ShowChar();
         LoadStory();
+
+        bgController = BCFC.instance;
+        layer = null;
+        layer = bgController.background;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StopAllCoroutines();
-            StartCoroutine(ShowChar());
-            //DisplayNextLine();
+            StopCoroutine(_enumerator);
+            StartCoroutine(_enumerator);
+            DisplayNextLine();
+        }
+        
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            layer.TransitionToTexture(_texture, 1f, false);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            layer.TransitionToTexture(_texture2, 1f, false);
         }
 
     }
@@ -47,9 +71,12 @@ public class DialogueController : MonoBehaviour
         story.BindExternalFunction("Position", (float x, float y) => ChangePosition(x, y));//NO FUNCIONA PÈRO debería cambiar la posicion de los personajes
         story.BindExternalFunction("Enter", (string pjName) => Enter(pjName));//Introduce un personaje en pantalla, por ahora en el centro de la misma
         story.BindExternalFunction("Exit", (string pjName) => Exit(pjName));//Saca un personaje de pantalla
-        story.BindExternalFunction("SetPosition", (string dataPos, float x, float y) => SetPosition(dataPos, x, y));//NO FUNCIONA PERO debería marcar una posicion inicial de los pj
         story.BindExternalFunction("Chapter", (string chapter) => LoadOtherInk(chapter));//Esto es para cambiar entre ink archivos
-        story.BindExternalFunction("SetLayer", (string layer) => SetLayerImage(layer, BCFC.instance.foreground));//NO FUNCIONA PERO debería de cambiar los fondos
+        story.BindExternalFunction("CallSetBg", (string layer) => CallSetBg(layer));//NO FUNCIONA PERO debería de cambiar los fondos
+        story.BindExternalFunction("SetPositionTest", (string pjName, float amount) => SetPositionTest(pjName, amount));//Mueve un personaje a partir de su nombre y un valor que será la posicion en X
+        story.BindExternalFunction("MoveCharacter", (string namePj, float locationX, float speed) => MoveCharacter(namePj, locationX, speed));
+
+        //MoveCharacter(string namePj, float locationX, float locationY, float speed, bool smooth)
 
     }
 
@@ -122,9 +149,7 @@ public class DialogueController : MonoBehaviour
             }
         }
     }
-
-
-
+    
     public IEnumerator ShowChar()
     {
         if (story.canContinue)
@@ -148,8 +173,7 @@ public class DialogueController : MonoBehaviour
             dialogueBox.text = "END";//Temporal
         }
     }
-
-
+    
 
     public void Enter(string data)
     {
@@ -195,82 +219,95 @@ public class DialogueController : MonoBehaviour
             c.FadeOut(speed, smooth);
         }
     }
-
-
-    public void ChangeName(string name)
+    
+    public void ChangeName(string namePj)
     {
-        string speakerName = name;
+        string speakerName = namePj;
 
         nameTag.text = speakerName;
     }
-
-
-    void SetPosition(string data, float locationX, float locationY)
+    
+    void SetPositionTest(string pjName, float amount)
     {
+        GameObject objToMove = GameObject.Find("Character" + "[" + pjName + "]" + "(Clone)");
+        RectTransform actualPosInCanvas = objToMove.GetComponent<RectTransform>();
 
-        string[] parameters = data.Split(',');
-        string character = parameters[0];
-        locationX = float.Parse(parameters[1], System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("en-US"));
-        locationY = parameters.Length == 3 ? float.Parse(parameters[2], System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("en-US")) : 0;
-
-        Character c = CharacterManager.instance.GetCharacters(character);
-        c.SetPosition(new Vector2(locationX, locationY));
-
-        print("set " + c.characterName + " position to " + locationX + "," + locationY);
+        actualPosInCanvas.localPosition = new Vector3(amount, 0, 0);
+        
     }
 
+    void MoveCharacter(string namePj, float locationX, float speed)
+    {
+        StartCoroutine(MoveCharacterCoroutine(namePj, locationX, speed));
+    }
 
+    private IEnumerator MoveCharacterCoroutine(string namePj, float locationX, float speed)
+    {
+        GameObject objToMove = GameObject.Find("Character" + "[" + namePj + "]" + "(Clone)");
+        
+        
+        RectTransform actualPosInCanvas = objToMove.GetComponent<RectTransform>();
+        Vector2 target = new Vector2(locationX, 0f);
+
+        while (actualPosInCanvas.anchoredPosition != target)
+        {
+            actualPosInCanvas.anchoredPosition = Vector2.MoveTowards(actualPosInCanvas.anchoredPosition, target, speed * Time.deltaTime);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+    }
+    
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
+    
 
-
-
-    public void ChangePosition(float x, float y)
+    private void ChangePosition(float x, float y)
     {
         Vector2 newPosition = new Vector2(x, y);
         Debug.Log(newPosition);
     }
 
-    public void LoadOtherInk(string name)
+    private void LoadOtherInk(string nameString)
     {
-        TextAsset temp;
-        Story tempStory;
+        TextAsset temp = (TextAsset)Resources.Load("InkArchive/Ink[" + nameString + "]");
 
-        temp = (TextAsset)Resources.Load("InkArchive/Ink[" + name + "]");
-
-        tempStory = new Story(temp.text);
+        Story tempStory = new Story(temp.text);
         story = tempStory;
 
         //story = new Story(inkJsonFile.text);
 
     }
 
+    void CallSetBg(string layer)
+    {
+        SetLayerImage(layer, BCFC.instance.background);
+    }
+    
     void SetLayerImage(string data, BCFC.LAYER layer)
     {
-        string texName = data.Contains(",") ? data.Split(',')[0] : data;
+        Debug.Log(("Enter in setlayerimage"));
+        string texName = data;
         Texture2D tex = texName == "null" ? null : Resources.Load("Art/Images/UI/Backdrops/" + texName) as Texture2D;
         float spd = 2f;
         bool smooth = false;
-
-        if (data.Contains(","))
-        {
-            string[] parameters = data.Split(',');
-            foreach (string p in parameters)
-            {
-                float fVal = 0;
-                bool bVal = false;
-                if (float.TryParse(p, out fVal))
-                {
-                    spd = fVal; continue;
-                }
-                if (bool.TryParse(p, out bVal))
-                {
-                    smooth = bVal; continue;
-                }
-            }
-        }
+        
+        // string[] parameters = data.Split(',');
+        // foreach (string p in parameters)
+        // {
+        //     float fVal = 0;
+        //     bool bVal = false;
+        //     if (float.TryParse(p, out fVal))
+        //     {
+        //         spd = fVal; continue;
+        //     }
+        //     if (bool.TryParse(p, out bVal))
+        //     {
+        //         smooth = bVal; continue;
+        //     }
+        // }
 
         layer.TransitionToTexture(tex, spd, smooth);
     }
