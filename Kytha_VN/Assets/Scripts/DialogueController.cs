@@ -25,9 +25,8 @@ public class DialogueController : MonoBehaviour
     [Header(("Others"))] 
     private BCFC.LAYER layer;
     private BCFC bgController;
-    [SerializeField] private Texture _texture;
-    [SerializeField] private Texture _texture2;
-    
+    [SerializeField] private Texture[] _texture;
+
     private IEnumerator _enumerator;
 
     private void Start()
@@ -44,20 +43,9 @@ public class DialogueController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            DisplayNextLine();
             StopCoroutine(_enumerator);
             StartCoroutine(_enumerator);
-            DisplayNextLine();
-        }
-        
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            layer.TransitionToTexture(_texture, 1f, false);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            layer.TransitionToTexture(_texture2, 1f, false);
         }
 
     }
@@ -72,7 +60,7 @@ public class DialogueController : MonoBehaviour
         story.BindExternalFunction("Enter", (string pjName) => Enter(pjName));//Introduce un personaje en pantalla, por ahora en el centro de la misma
         story.BindExternalFunction("Exit", (string pjName) => Exit(pjName));//Saca un personaje de pantalla
         story.BindExternalFunction("Chapter", (string chapter) => LoadOtherInk(chapter));//Esto es para cambiar entre ink archivos
-        story.BindExternalFunction("CallSetBg", (string name) => CallSetBg(name));//NO FUNCIONA PERO debería de cambiar los fondos
+        story.BindExternalFunction("CallSetBg", (int arrayPos) => CallSetBg(arrayPos));//NO FUNCIONA PERO debería de cambiar los fondos
         story.BindExternalFunction("SetPositionTest", (string pjName, float amount) => SetPositionTest(pjName, amount));//Mueve un personaje a partir de su nombre y un valor que será la posicion en X
         story.BindExternalFunction("MoveCharacter", (string namePj, float locationX, float speed) => MoveCharacter(namePj, locationX, speed));
 
@@ -135,7 +123,7 @@ public class DialogueController : MonoBehaviour
     {
         story.ChooseChoiceIndex(choice.index);
         RefreshChoiceView();
-        ShowChar();
+        StartCoroutine(ShowChar());
 
     }
 
@@ -150,7 +138,7 @@ public class DialogueController : MonoBehaviour
         }
     }
     
-    public IEnumerator ShowChar()
+    private IEnumerator ShowChar()
     {
         if (story.canContinue)
         {
@@ -158,11 +146,12 @@ public class DialogueController : MonoBehaviour
             text = text?.Trim();
 
             dialogueBox.text = "";
-            foreach (char c in text)
-            {
-                dialogueBox.text += c;
-                yield return new WaitForSeconds(speedText);
-            }
+            if (text != null)
+                foreach (char c in text)
+                {
+                    dialogueBox.text += c;
+                    yield return new WaitForSeconds(speedText);
+                }
         }
         else if (story.currentChoices.Count > 0)
         {
@@ -282,10 +271,9 @@ public class DialogueController : MonoBehaviour
 
     }
 
-    void CallSetBg(string name)
+    void CallSetBg(int  arrayPos)
     {
-        layer.TransitionToTexture(_texture, 1f, false);
-        Debug.Log(name);
+        layer.TransitionToTexture(_texture[arrayPos], 1f, false);
     }
     
     void SetLayerImage(string data, BCFC.LAYER layer)
