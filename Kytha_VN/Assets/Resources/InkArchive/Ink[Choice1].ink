@@ -62,10 +62,11 @@ tiene un orden.
 {Name("¿¿??")}
 ¿??: ¡Por cierto! La Capitana está esperándote. Su despacho no está lejos, así que apresúrate.
 Asentí, y dejé que la vampira continuase con su trabajo. No podía dejar de pensar que el montón más alto era el de trabajo pendiente.
+{Exit("Valena")}
 
 Caminé por los pasillos, hasta que al final encontré el despacho de la Capitana. Bien, allá vamos. Ella iba a ser mi superior durante todo el tiempo que estuviese aquí. Y lo cierto era que tenía muy buena fama. Era la Capitana que había convertido a Kytha en una ciudad, al fin y al cabo.
 Tras un par de toques a la puerta, una voz procedente del interior me dio permiso para entrar.
-{Name("¿¿??")}
+{Enter("Captain")}{Name("¿¿??")}
 Capitana: Hola. Debes ser la nueva incorporación. Soy la Capitana Rosas.
 Su mirada me midió de arriba abajo, como si estuviera intentando evaluarme sólo por mi aspecto. Me llevé la mano izquierda a la parte derecha del pecho, allí donde debería haber estado mi placa de la Guardia. La Capitana pareció aprobarlo. 
 {Name("Player")}
@@ -96,6 +97,7 @@ Player: Sí, señora. Gracias por su tiempo.
 Con un gesto de la mano me indicó que me marchara. Antes de salir, pude oírle murmurar algo entre dientes. 
 {Name("Capitana")}
 Capitana: No me pagan lo suficiente… 
+{Exit("Captain")}
 Cerré la puerta detrás de mí. No era común que los capitanes se encargasen de darle tanta información a un nuevo traslado. Quizás sí en los pueblos, y en Randell éramos más como una familia, pero… Esperaba que las cosas fueran diferentes. 
 ¿Me habría equivocado? Al fin y al cabo, Kytha consiguió el rango de ciudad hacía apenas unos años. Era normal que continuasen en una transición con sus protocolos. 
 No tardé demasiado en encontrar lo que parecían ser unos vestuarios y un pequeño baño. Me cambié rápidamente y volví a salir al pasillo. La placa de la Guardia relucía en mi pecho. 

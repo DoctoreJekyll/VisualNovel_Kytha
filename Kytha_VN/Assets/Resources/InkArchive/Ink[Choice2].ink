@@ -16,8 +16,9 @@ Las puertas, custodiadas por dos guardias, estaban abiertas de par en par. Nadie
 Los pasillos estaban tan resplandecientes como la fachada, y decidí aventurarme para buscar la sala de Administración. No debería ser muy difícil de encontrar. 
 Escuché dos voces que parecían discutir en un pasillo cercano. Con curiosidad me acerqué, e intenté esconderme detrás de una esquina. Sonaba como si estuvieran teniendo una discusión. 
 Me asomé para verlos mejor. Parecían ser una mujer y un… ¿niño?
-Show Captain at left
-Show kid at right
+
+{Enter("Captain")}{Name("¿¿??")} {SetPositionTest("Captain", -500)}
+{Enter("Luca")}{Name("¿¿??")} {SetPositionTest("Luca", 500)}
 ¿??: ¡Venga, por favor! Os puedo ser muy útil. Ya sé que no admitís a humanos en la Guardia, ¡pero podría ser vuestro proveedor! Incluso tengo pruebas de algunos artículos ¡deme al menos una oportunidad!
 ¿??: Oye, chico. Déjalo. Eres muy joven para ser proveedor de nada. Vuelve con tu familia y no vengas más. ¿Entendido?
 La voz de la mujer sonó hastiada de aquel muchacho tan insistente. Aunque lo entendía. Tener a un humano en el Cuartel podía acarrear problemas. Más si era un menor. 
@@ -26,8 +27,10 @@ El muchacho revolvió en su bolsa, sacando diferentes frascos. No tenía ni idea
 ¿??: Ya te he dicho miles de veces que no, así que márchate a casa. Y deja de preguntar por mí constantemente, soy una Capitana ¿entendido? Tengo cosas más importantes que hacer que ser tu niñera. 
 ¿??: Pero… Bueno, vale. ¡Lo intentaré otro día!
 El chico metió los frascos en su bolsa y con una traviesa sonrisa, desapareció por el pasillo en una carrera. La Capitana suspiró y agitó la cabeza de un lado a otro. Con paso sereno, entró en algún despacho. Ninguno se dio cuenta de mi presencia, así que seguí mi camino. 
+{Exit("Captain")}
+{Exit("Luca")}
 Tras deambular unos cuantos minutos, encontré la sala de Administración. Los cartelesa los lados de las puertas ayudaban bastante. 
-Llamé a la puerta, pero al segundo toque se abrió sola. Empujé la madera, que cediócon un leve crujido, y entré. 
+Llamé a la puerta, pero al segundo toque se abrió sola. Empujé la madera, que cedió con un leve crujido, y entré. 
 Parecía estar vacía. Sin embargo, olía a…
 {Enter("Valena")}{Name("¿¿??")}
 ¿??: ¡Oh! 
@@ -58,10 +61,11 @@ tiene un orden.
 {Name("¿¿??")}
 ¿??: ¡Por cierto! La Capitana está esperándote. Su despacho no está lejos, así que apresúrate.
 Asentí, y dejé que la vampira continuase con su trabajo. No podía dejar de pensar que el montón más alto era el de trabajo pendiente.
+{Exit("Valena")}
 
 Caminé por los pasillos, hasta que al final encontré el despacho de la Capitana. Bien, allá vamos. Ella iba a ser mi superior durante todo el tiempo que estuviese aquí. Y lo cierto era que tenía muy buena fama. Era la Capitana que había convertido a Kytha en una ciudad, al fin y al cabo.
 Tras un par de toques a la puerta, una voz procedente del interior me dio permiso para entrar.
-{Name("¿¿??")}
+{Enter("Captain")}{Name("¿¿??")}{SetPositionTest("Captain", 0)}
 Capitana: Hola. Debes ser la nueva incorporación. Soy la Capitana Rosas.
 Su mirada me midió de arriba abajo, como si estuviera intentando evaluarme sólo por mi aspecto. Me llevé la mano izquierda a la parte derecha del pecho, allí donde debería haber estado mi placa de la Guardia. La Capitana pareció aprobarlo. 
 {Name("Player")}
@@ -92,6 +96,7 @@ Player: Sí, señora. Gracias por su tiempo.
 Con un gesto de la mano me indicó que me marchara. Antes de salir, pude oírle murmurar algo entre dientes. 
 {Name("Capitana")}
 Capitana: No me pagan lo suficiente… 
+{Exit("Captain")}
 Cerré la puerta detrás de mí. No era común que los capitanes se encargasen de darle tanta información a un nuevo traslado. Quizás sí en los pueblos, y en Randell éramos más como una familia, pero… Esperaba que las cosas fueran diferentes. 
 ¿Me habría equivocado? Al fin y al cabo, Kytha consiguió el rango de ciudad hacía apenas unos años. Era normal que continuasen en una transición con sus protocolos. 
 No tardé demasiado en encontrar lo que parecían ser unos vestuarios y un pequeño baño. Me cambié rápidamente y volví a salir al pasillo. La placa de la Guardia relucía en mi pecho. 
@@ -159,3 +164,8 @@ EXTERNAL Chapter(chapter)
 EXTERNAL SetLayer(layer)
 === function SetLayer(layer) ===
 ~ return layer
+
+EXTERNAL SetPositionTest(pjName, amount)
+=== function SetPositionTest(pjName, amount) ===
+~ return pjName
+~ return amount
