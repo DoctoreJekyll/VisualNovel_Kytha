@@ -1166,7 +1166,7 @@ MonoBehaviour:
   inkJsonFile: {fileID: 4900000, guid: 7b788eacf04c4fa42a9aa5c7c2ee36ae, type: 3}
   dialogueBox: {fileID: 1234976543}
   nameTag: {fileID: 654356594}
-  speedText: 0.0131
+  speedText: 0.0246
   verticalLayoutGroup: {fileID: 291012259}
   buttonPrefab: {fileID: 1192901049084518799, guid: e21bdf60979c89244bcb467a2395ce0a, type: 3}
   _texture:

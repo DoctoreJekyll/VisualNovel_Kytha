@@ -27,11 +27,10 @@ public class DialogueController : MonoBehaviour
     private BCFC bgController;
     [SerializeField] private Texture[] _texture;
 
-    private IEnumerator _enumerator;
+    private Coroutine textCorroutine;
 
     private void Start()
     {
-        _enumerator = ShowChar();
         LoadStory();
 
         bgController = BCFC.instance;
@@ -43,9 +42,11 @@ public class DialogueController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            DisplayNextLine();
-            StopCoroutine(_enumerator);
-            StartCoroutine(_enumerator);
+            //DisplayNextLine();
+            //StopCoroutine(_enumerator);
+            //StartCoroutine(_enumerator);
+            
+            ContinueStory();
         }
 
     }
@@ -66,25 +67,6 @@ public class DialogueController : MonoBehaviour
 
         //MoveCharacter(string namePj, float locationX, float locationY, float speed, bool smooth)
 
-    }
-
-
-    public void DisplayNextLine()
-    {
-        if (story.canContinue)
-        {
-            string text = story.Continue();
-            text = text?.Trim();
-            dialogueBox.text = text;
-        }
-        else if (story.currentChoices.Count > 0)
-        {
-            DisplayChoices();
-        }
-        else
-        {
-            dialogueBox.text = "END";//Temporal
-        }
     }
 
     private void DisplayChoices()
@@ -123,7 +105,7 @@ public class DialogueController : MonoBehaviour
     {
         story.ChooseChoiceIndex(choice.index);
         RefreshChoiceView();
-        StartCoroutine(ShowChar());
+        StartCoroutine(ShowTextLetterByLetter(story.Continue()));
 
     }
 
@@ -137,21 +119,16 @@ public class DialogueController : MonoBehaviour
             }
         }
     }
-    
-    private IEnumerator ShowChar()
+
+    private void ContinueStory()
     {
         if (story.canContinue)
         {
-            string text = story.Continue();
-            text = text?.Trim();
-
-            dialogueBox.text = "";
-            if (text != null)
-                foreach (char c in text)
-                {
-                    dialogueBox.text += c;
-                    yield return new WaitForSeconds(speedText);
-                }
+            if (textCorroutine != null)
+            {
+                StopCoroutine(textCorroutine);
+            }
+            textCorroutine = StartCoroutine(ShowTextLetterByLetter(story.Continue()));
         }
         else if (story.currentChoices.Count > 0)
         {
@@ -162,9 +139,20 @@ public class DialogueController : MonoBehaviour
             dialogueBox.text = "END";//Temporal
         }
     }
+
+    private IEnumerator ShowTextLetterByLetter(string line)
+    {
+        dialogueBox.text = "";
+
+        foreach (var t in line.ToCharArray())
+        {
+            dialogueBox.text += t;
+            yield return new WaitForSeconds(speedText);
+        }
+    }
     
 
-    public void Enter(string data)
+    private void Enter(string data)
     {
         string[] parameters = data.Split(',');
         string[] characters = parameters[0].Split(';');
@@ -187,7 +175,7 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    void Exit(string data)
+    private void Exit(string data)
     {
         string[] parameters = data.Split(',');
         string[] characters = parameters[0].Split(';');
@@ -209,14 +197,14 @@ public class DialogueController : MonoBehaviour
         }
     }
     
-    public void ChangeName(string namePj)
+    private void ChangeName(string namePj)
     {
         string speakerName = namePj;
 
         nameTag.text = speakerName;
     }
     
-    void SetPositionTest(string pjName, float amount)
+    private void SetPositionTest(string pjName, float amount)
     {
         GameObject objToMove = GameObject.Find("Character" + "[" + pjName + "]" + "(Clone)");
         RectTransform actualPosInCanvas = objToMove.GetComponent<RectTransform>();
@@ -225,7 +213,7 @@ public class DialogueController : MonoBehaviour
         
     }
 
-    void MoveCharacter(string namePj, float locationX, float speed)
+    private void MoveCharacter(string namePj, float locationX, float speed)
     {
         StartCoroutine(MoveCharacterCoroutine(namePj, locationX, speed));
     }
@@ -247,7 +235,7 @@ public class DialogueController : MonoBehaviour
 
     }
     
-    public void LoadScene(string sceneName)
+    private void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
@@ -271,12 +259,12 @@ public class DialogueController : MonoBehaviour
 
     }
 
-    void CallSetBg(int  arrayPos)
+    private void CallSetBg(int  arrayPos)
     {
         layer.TransitionToTexture(_texture[arrayPos], 1f, false);
     }
     
-    void SetLayerImage(string data, BCFC.LAYER layer)
+    private void SetLayerImage(string data, BCFC.LAYER layer)
     {
         Debug.Log(("Enter in setlayerimage"));
         string texName = data;
