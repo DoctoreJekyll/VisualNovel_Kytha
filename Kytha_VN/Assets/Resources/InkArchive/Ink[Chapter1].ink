@@ -1,3 +1,4 @@
+{CallSetBg(1)}
 {Enter("Ethan")}{Name("Ethan")}
 Ethan: Las calles a veces pueden parecer un poco liosas. Pero los olores son bastante característicos, así que siempre puedes seguirlos. 
 {Name("Player")}
@@ -15,6 +16,7 @@ Ethan: Bueno… Lo siento si ha sido una pregunta demasiado directa. Pero si tie
 {Name("Player")}
 Player: Agh… No, no tengo ningún problema olfativo. ¿Contento?
 La cola de Ethan dejó de moverse de un lado a otro, y desvió la mirada hacia algún punto del suelo. No contestó y siguió caminando. 
+{CallSetBg(2)}
 Las calles olían sorprendentemente a hierbabuena. Al menos, ese fue el primer olor que identifiqué con certeza. Los olores de las flores seguían mezclándose continuamente.
 Todo era… bastante pacífico.
 La postura del licántropo cambió, y sus orejas se irguieron una vez más. Volvió a sonreír y a recuperar la energía que había tenido antes.
@@ -31,8 +33,7 @@ Player: O borracho.
 Ethan: …Sólo un poco. 
 Sonreí. La verdad es que me sentía un poco culpable por haberle hablado de mala manera antes. Y quizás estaba siendo algo cruel o impertinente con mis comentarios… Pero a él no parecía importarle ¿no?
 
-BG distrito residencial de sobrenaturales
-
+{CallSetBg(3)}
 Entramos en una zona un poco más apartada. Ahora las casas eran más altas, dando lugar a los alojamientos temporales que solían pertenecer a los sobrenaturales recién llegados. Eso no parecía cambiar en ninguna parte. 
 {Name("Ethan")}
 Ethan: ¡Bien! Pues este es el distrito sobrenatural. Aunque ahora mismo no vive mucha gente por aquí. La mayoría de los guardias llevamos en Kytha varios años, así que nuestras residencias son permanentes. 
@@ -75,8 +76,7 @@ Ethan: ¿Q-qué? ¡No! Son confidenciales por algo. Pero a veces hay… algunos 
 Ethan: ¡Bueno! Creo que eso es suficiente. Deberíamos seguir. 
 Se dio la vuelta y comenzó a caminar en dirección a la salida del distrito. ¿Así que en la biblioteca se escondían registros confidenciales de la Guardia…? Ya… Claro. Eso era bastante sospechoso. Sin embargo, no me quedaba otra opción que seguirle. Debería investigarlo en otra ocasión. 
 
-BG calle
-
+{CallSetBg(1)}
 Y de nuevo acabamos por las calles de Kytha. Lo cierto era que cada vez más, estas callejuelas me recordaban a un laberinto. Quizás para él sería fácil guiarse por los olores, pero esto… Ugh. 
 Estornudé involuntariamente. La mezcla de olores se metía en la nariz y ahora no dejaba dehacerme cosquillas. 
 {Name("Ethan")}
@@ -91,7 +91,7 @@ Ethan: ¡No, claro que no! (ruborizado) Puede… que me haya dejado llevar un po
  {Name("Ethan")}
 Ethan: O-oh, ¿tú crees? Quizás… cuando no estemos de servicio pueda contarte más sobre la ciudad. Si quieres… claro. 
 {Name("Ethan")}
--Ethan: Creo que me estoy dejando llevar demasiado. Kytha es un lugar maravilloso, y poder compartirlo con otra persona de fuera ha hecho que… bueno, fuera demasiado insistente. No me gustaría que te llevases una mala impresión de mi profesionalidad por esto. 
+Ethan: Creo que me estoy dejando llevar demasiado. Kytha es un lugar maravilloso, y poder compartirlo con otra persona de fuera ha hecho que… bueno, fuera demasiado insistente. No me gustaría que te llevases una mala impresión de mi profesionalidad por esto. 
 {Name("Ethan")}
 Ethan: Sólo quería intentar que te sintieras menos… lejos de casa, supongo.
 {Name("Player")}
@@ -141,14 +141,13 @@ Ethan: Lo recordaré. Gracias por contármelo.
 
 ===Continue
 
--La patrulla continuó sin más sobresaltos. Ahora parecía haber más gente en las calles, y muchas se pararon a saludar al licántropo. Otras preguntaron por mí, supongo que motivadas por la curiosidad de alguien nuevo en la ciudad. 
+La patrulla continuó sin más sobresaltos. Ahora parecía haber más gente en las calles, y muchas se pararon a saludar al licántropo. Otras preguntaron por mí, supongo que motivadas por la curiosidad de alguien nuevo en la ciudad. 
 Lo cierto es que me recordaban a la gente de Randell. Parecían amables y cálidos… 
 Sé que le dije a Ethan que no sentiría morriña en el primer día, pero… No podía evitar sentir que mi corazón se partía en trocitos cuando pensaba lo lejos que realmente estaba de lo que había sido mi primer hogar. 
 La noche se cernió sobre nosotros, tan oscura como placentera. La brisa se volvió más fría, y mis ojos no tardaron en acostumbrarse a la poca luz. Los niños que jugaban en la calle volvieron a sus casas, y pronto, la mayoría de puertas y ventanas estaban cerradas. 
 {Exit("Ethan")}
 
-BG pasillo
-
+{CallSetBg(5)}
 Ethan hacía tiempo que se había escaqueado. El papeleo, como me advirtió antes, era algo que no soportaba, así que había sido mi turno de redactar el informe de la patrulla. 
 Ahora sólo quedaba llegar a Administración. 
 Recordando que la chica que me había atendido era una vampira, intenté centrarme en ese rastro para encontrar la sala de forma más rápida. 
@@ -156,8 +155,7 @@ No recordaba con demasiado detalle su perfume, pero sabía que no era el que est
 Al final encontré lo que buscaba, así que la idea había sido igual de efectiva. 
 La puerta volvió a crujir otra vez. Siendo de noche, era bastante más tétrico. Y el silencio no ayudaba demasiado.
 
-BG Administración
-
+{CallSetBg(6)}
 La estancia parecía completamente vacía. Igual que aquella mañana, no encontré a la extraña vampira. 
 Player: ¿Hola? 
 Avancé unos cuantos pasos, esperando a que mi vista se acostumbrase a la penumbra. A diferencia de los pasillos, la sala era bastante más oscura. 
@@ -208,6 +206,7 @@ Player: Gracias, Vaenus. Eres muy amable.
 Él asintió y volvió a centrarse en el documento que tenía en la mano. No quise volver a interrumpirle, y tampoco tenía nada más que decir, así que me marché. 
 Las personas de Kytha eran… bastante diferentes de lo que me esperaba. 
 
+{CallSetBg(3)}
 Me apresuré por las calles de la ciudad hasta llegar a mi nuevo hogar. Número 23. Saqué la llave que Ethan me había dado anteriormente, y busqué la puerta. Estaba deseando darme un baño y dormir… Ojalá el carruaje hubiera llegado por la noche y no a media mañana. Trabajar después de un viaje era agotador. 
 Y, aun así, no podía quitarme algo de la cabeza. No estaba allí solo para hacer amigos o para trabajar en patrullas… 
 Tenía que encontrar a quien estuviera aprovechándose de la Guardia. El problema era, que necesitaba pruebas. Y no sabía ni por dónde empezar a investigar sin levantar sospechas. 
@@ -237,6 +236,17 @@ EXTERNAL Chapter(chapter)
 === function Chapter(chapter) ===
 ~ return chapter
 
-EXTERNAL SetLayer(layer)
-=== function SetLayer(layer) ===
+EXTERNAL CallSetBg(layer)
+=== function CallSetBg(layer) ===
 ~ return layer
+
+EXTERNAL SetPositionTest(pjName, amount)
+=== function SetPositionTest(pjName, amount) ===
+~ return pjName
+~ return amount
+
+EXTERNAL MoveCharacter(namePj, locationX, speed)
+=== function MoveCharacter(namePj, locationX, speed) ===
+~ return namePj
+~ return locationX
+~ return speed
