@@ -139,8 +139,7 @@ Me quedé mirándole unos instantes, sin saber muy bien qué decir. ¿De dónde 
 Ethan: ¡Deberíamos empezar! Es algo rutinario, así que, aunque lo llamen patrulla, no es más que darse una vuelta por la ciudad. ¡Estoy seguro de que te encantará! 
 Y sin más, Ethan echó a andar a paso ligero. Me pilló de sorpresa, así que tuve que agigantar un poco mis pasos para alcanzarle. Parecía bastante enérgico. 
 {Name("Ethan")}
-Ethan: En Kytha no suele haber problemas mayores, así que no tendrás mucho de qué 
-preocuparte. 
+Ethan: En Kytha no suele haber problemas mayores, así que no tendrás mucho de qué preocuparte. 
 
 {Chapter("Chapter1")}
 

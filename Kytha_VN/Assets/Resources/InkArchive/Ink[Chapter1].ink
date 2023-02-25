@@ -87,9 +87,13 @@ Player: Oye…
  *¿Así es como patrullas todos los días?
  {Name("Ethan")}
 Ethan: ¡No, claro que no! (ruborizado) Puede… que me haya dejado llevar un poco. Lo siento si he sido demasiado pesado. 
+-> Continue1
  *Estás hecho todo un guía turístico.
  {Name("Ethan")}
 Ethan: O-oh, ¿tú crees? Quizás… cuando no estemos de servicio pueda contarte más sobre la ciudad. Si quieres… claro. 
+-> Continue1
+
+===Continue1
 {Name("Ethan")}
 Ethan: Creo que me estoy dejando llevar demasiado. Kytha es un lugar maravilloso, y poder compartirlo con otra persona de fuera ha hecho que… bueno, fuera demasiado insistente. No me gustaría que te llevases una mala impresión de mi profesionalidad por esto. 
 {Name("Ethan")}
