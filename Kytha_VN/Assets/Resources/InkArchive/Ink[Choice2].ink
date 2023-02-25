@@ -1,5 +1,7 @@
+{Name("¿?")}
 Los hechos seguían siendo los mismos. Iba a empezar una nueva vida, con una misión inusual. Dejándome llevar por las múltiples opciones que me esperaban, el sueño volvió a apoderarse de mí. 
 
+{CallSetBg(1)}
 Así que esto es Kytha.
 Había escuchado a mis antiguos compañeros hablando de lo ideal que era para unas vacaciones. También decían que era una de las pocas ciudades con mayor población de ninfas, y eso explicaría por qué me encontraba en un lugar lleno de plantas y vegetación. 
 La brisa que soplaba me traía todo tipo de olores, sobre todo los dulces perfumes de las flores. 
@@ -9,10 +11,12 @@ Pueden ser meses o… toda tu vida.
 Tenía que admitir que la ciudad resultaba tentadora para dar una vuelta… pero si me encontraban deambulando y sin reportar mi llegada, podría meterme en un lío.
 
 La opción más lógica era cumplir con mi deber. Ya tendría tiempo de explorar la ciudad. 
+{CallSetBg(4)}
 No fue muy difícil encontrar el Cuartel. Al fin y al cabo, había varios guardias cerca, distinguibles por su uniforme azul y blanco. 
 Aunque variaban en las formas y dejaban una cierta libertad para elegir los diseños de los uniformes, la placa con el símbolo de la Guardia siempre resplandecía en la parte derecha del pecho de cualquier soldado en servicio. 
-El Cuartel, al igual que en muchas otras ciudades, era un edificio imponente y níveo. 
+El Cuartel, al igual que en muchas otras ciudades, era un edificio imponente y níveo.
 Las puertas, custodiadas por dos guardias, estaban abiertas de par en par. Nadie me impidió entrar. 
+{CallSetBg(5)}
 Los pasillos estaban tan resplandecientes como la fachada, y decidí aventurarme para buscar la sala de Administración. No debería ser muy difícil de encontrar. 
 Escuché dos voces que parecían discutir en un pasillo cercano. Con curiosidad me acerqué, e intenté esconderme detrás de una esquina. Sonaba como si estuvieran teniendo una discusión. 
 Me asomé para verlos mejor. Parecían ser una mujer y un… ¿niño?
@@ -31,6 +35,7 @@ El chico metió los frascos en su bolsa y con una traviesa sonrisa, desapareció
 {Exit("Luca")}
 Tras deambular unos cuantos minutos, encontré la sala de Administración. Los cartelesa los lados de las puertas ayudaban bastante. 
 Llamé a la puerta, pero al segundo toque se abrió sola. Empujé la madera, que cedió con un leve crujido, y entré. 
+{CallSetBg(6)}
 Parecía estar vacía. Sin embargo, olía a…
 {Enter("Valena")}{Name("¿¿??")}
 ¿??: ¡Oh! 
@@ -63,8 +68,10 @@ tiene un orden.
 Asentí, y dejé que la vampira continuase con su trabajo. No podía dejar de pensar que el montón más alto era el de trabajo pendiente.
 {Exit("Valena")}
 
+{CallSetBg(5)}
 Caminé por los pasillos, hasta que al final encontré el despacho de la Capitana. Bien, allá vamos. Ella iba a ser mi superior durante todo el tiempo que estuviese aquí. Y lo cierto era que tenía muy buena fama. Era la Capitana que había convertido a Kytha en una ciudad, al fin y al cabo.
 Tras un par de toques a la puerta, una voz procedente del interior me dio permiso para entrar.
+{CallSetBg(7)}
 {Enter("Captain")}{Name("¿¿??")}{SetPositionTest("Captain", 0)}
 Capitana: Hola. Debes ser la nueva incorporación. Soy la Capitana Rosas.
 Su mirada me midió de arriba abajo, como si estuviera intentando evaluarme sólo por mi aspecto. Me llevé la mano izquierda a la parte derecha del pecho, allí donde debería haber estado mi placa de la Guardia. La Capitana pareció aprobarlo. 
@@ -97,6 +104,7 @@ Con un gesto de la mano me indicó que me marchara. Antes de salir, pude oírle 
 {Name("Capitana")}
 Capitana: No me pagan lo suficiente… 
 {Exit("Captain")}
+{CallSetBg(5)}
 Cerré la puerta detrás de mí. No era común que los capitanes se encargasen de darle tanta información a un nuevo traslado. Quizás sí en los pueblos, y en Randell éramos más como una familia, pero… Esperaba que las cosas fueran diferentes. 
 ¿Me habría equivocado? Al fin y al cabo, Kytha consiguió el rango de ciudad hacía apenas unos años. Era normal que continuasen en una transición con sus protocolos. 
 No tardé demasiado en encontrar lo que parecían ser unos vestuarios y un pequeño baño. Me cambié rápidamente y volví a salir al pasillo. La placa de la Guardia relucía en mi pecho. 
@@ -105,10 +113,9 @@ Bueno, ahora tenía que encontrar a mi compañero. Según había dicho la capita
 {Name("Player")}
 Salí del cuartel y caminé hasta la plaza de la ciudad. Estaba bastante transitada, muchas personas iban y venían. 
 
-Me quedé mirando alrededor, pensando por dónde y cómo podría encontrar al licántropo. 
-
+Me quedé mirando alrededor, pensando por dónde y cómo podría encontrar al licántropo.
 Entonces alguien tocó mi hombro y me giré. 
-
+{CallSetBg(4)}
 {Enter("Ethan")}{Name("¿?")}
 ¡Hola! Me dijeron que buscase a alguien con pinta de estar perdido. ¿Eres tú?
 
@@ -161,11 +168,17 @@ EXTERNAL Chapter(chapter)
 === function Chapter(chapter) ===
 ~ return chapter
 
-EXTERNAL SetLayer(layer)
-=== function SetLayer(layer) ===
+EXTERNAL CallSetBg(layer)
+=== function CallSetBg(layer) ===
 ~ return layer
 
 EXTERNAL SetPositionTest(pjName, amount)
 === function SetPositionTest(pjName, amount) ===
 ~ return pjName
 ~ return amount
+
+EXTERNAL MoveCharacter(namePj, locationX, speed)
+=== function MoveCharacter(namePj, locationX, speed) ===
+~ return namePj
+~ return locationX
+~ return speed
