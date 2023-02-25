@@ -86,6 +86,8 @@ public class DialogueController : MonoBehaviour
 
             button.onClick.AddListener(() => OnClickChoiceButton(choice));
         }
+        
+        StopCoroutine(ShowTextLetterByLetter(story.currentText));
 
     }
 
@@ -105,8 +107,8 @@ public class DialogueController : MonoBehaviour
     {
         story.ChooseChoiceIndex(choice.index);
         RefreshChoiceView();
-        StartCoroutine(ShowTextLetterByLetter(story.Continue()));
-
+        StopCoroutine(ShowTextLetterByLetter(story.Continue()));
+        ContinueStory();
     }
 
     private void RefreshChoiceView()
